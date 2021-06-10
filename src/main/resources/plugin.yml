@@ -1,0 +1,44 @@
+main: me.SuperRonanCraft.RonanGamesAPI.RonanGamesCorePlugin
+version: 1.0.0
+api-version: 1.13
+name: RonanGamesAPI
+author: SuperRonanCraft
+softdepend: [PlaceholderAPI, WorldGuard, WorldEdit]
+
+permissions:
+    ronangames.*:
+        children:
+            ronangames.admin: true
+    ronangames.admin:
+        children:
+            ronangames.reload: true
+            ronangames.updater: true
+            ronangames.player: true
+    ronangames.player:
+        children:
+            ronangames.games.player: true
+    ronangames.games.player:
+        children:
+            ronangames.games.list: true
+            ronangames.games.play: true
+    ronangames.use:
+        description: Permission to use game expansions
+        default: true
+    ronangames.games.list:
+        description: Permission to list all game expansions
+    ronangames.games.play:
+        description: Permission to play all game expansions
+    ronangames.reload:
+        description: Permission to reload plugin
+    ronangames.bypass.protection:
+        description: Bypass arena protection
+    ronangames.updater:
+        description: Permission to view update message
+
+commands:
+    games:
+        aliases: [minigames]
+        description: Main command
+    arena:
+        aliases: [arenas]
+        description: Edit arenas

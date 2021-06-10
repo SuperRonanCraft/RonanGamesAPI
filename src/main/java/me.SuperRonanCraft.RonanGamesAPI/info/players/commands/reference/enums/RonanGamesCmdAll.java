@@ -1,0 +1,30 @@
+package me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.enums;
+
+import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTabComplete;
+import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypeAll;
+import org.bukkit.command.CommandSender;
+
+import java.util.List;
+
+public interface RonanGamesCmdAll {
+
+    RonanGamesCmdTypeAll getCmd();
+
+    default boolean perm(CommandSender sendi) {
+        return getCmd().perm(sendi);
+    }
+
+    default String help() {
+        return getCmd().help();
+    }
+
+    default void usage(CommandSender sendi, String label) {
+        getCmd().usage(sendi, label);
+    }
+
+    default List<String> tabComplete(CommandSender sendi, String[] args) {
+        if (getCmd() instanceof RonanGamesCmdTabComplete)
+            return ((RonanGamesCmdTabComplete) getCmd()).tabComplete(sendi, args);
+        return null;
+    }
+}

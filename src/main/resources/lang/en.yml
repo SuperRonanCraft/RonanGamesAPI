@@ -1,0 +1,110 @@
+Messages:
+  Prefix: '&7[&6RonanGames&7] '
+  Permission: '%prefix%&cSorry! &fYou do not have permission to do that!'
+  Reload: '%prefix%&aPlugin has been reloaded!'
+  Invalid: '%prefix%&cInvalid argument! &7Try &f/%command% help!'
+
+Game:
+  List:
+    None: '%prefix%&cSorry! &7No games were found!'
+    Found: '%prefix%&eGames: &f[&6%games%&f]'
+  Version: '%prefix%&7%game% version: &e#%version%'
+  Author: '%prefix%&7%game% author: &e%author%'
+Arena:
+  Exist:
+    Arena: '%prefix%&cSorry! The Arena &8%arena%&c does not exist in the &6%game%&c mini-game!'
+    Game: '%prefix%&cErrpr! Seems as if the game &6%game%&c does not exist!'
+  Wand:
+    Success: '%prefix%&aGiven the Wand Selector! &7Select an area!'
+    Full: '%prefix%&cWhoops! Seems like your inventory is full! Wand was not given!'
+    Already: '%prefix%&cWhoops! Seems like you already have the wand in your inventory!'
+  List:
+    None: '%prefix%&cSorry! &7No arenas were found!'
+    Found:
+      Header: '&7&o-------&r &6RonanGames &8| &7Arena List &o--------'
+      Core: ' &7- &6%game% arenas: &f%arenas%'
+      Footer:  '&7&o------------------'
+  Create:
+    Success: '%prefix%&aSuccessfully created an arena with the name &r%arena% &aon the &e%game% &agame! &7Remember to type "&f/%command% save %arena%&7" to save changes!'
+    Already: '%prefix%&cWhoops! Seems as if the arena &6%arena%&c already exists! Please choose another name!'
+  Enable:
+    Success: '%prefix%&aSuccessfully enabled the arena &e%arena%&a for the mini-game &e%game%&a! &7Players are now able to play this arena!'
+    Invalid: '%prefix%&cSorry! The arena &6%arena%&c is invalid for the game &6%game%&c!'
+    Already: '%prefix%&cThe arena &6%arena%&c is already enabled for the game &6%game%&c!'
+  Disable:
+    Success: '%prefix%&aThe arena &e%arena%&a has been disabled for the game &e%game%&a!'
+    Already: '%prefix%&cThe arena &6%arena%&c is already disabled for the game &6%game%&c!'
+  Set:
+    Protection:
+      Error: '%prefix%&cError! Sorry, please create a selection with the wand! &7Please get a wand with "&f/%command% wand&7"'
+      Success: '%prefix%&aSuccessfully set the protected area!'
+      World: '%prefix%&cError! Seems as if the Arena &6%arena%&c is not located in the world &6%world%&c!'
+    Gamemode:
+      Exist: '%prefix%&cError! Sorry, the gamemode &6%gamemode%&c does not exist!'
+      Success: '%prefix%&aSuccessfully set the Gamemode to &e%gamemode%&a!'
+  Save:
+    Success: '%prefix%&aSuccessfully saved the arena &e%arena%&a for the game &e%game%&a!'
+    Invalid: '%prefix%&cAttempted to save the arena &6%arena%&c with an invalid setup!'
+  Delete:
+    Success: '%prefix%&bDelete the arena &e%arena%&b for the game &e%game%&b!'
+    Confirm: '%prefix%&cAttempted to save the arena &6%arena%&c with an invalid setup!'
+
+Lobby:
+  Enabled: '%prefix%&aSuccessfully enabled the lobby %lobby%! &7%game% is now able to use this lobby!'
+  Disabled: '%prefix%&cThe lobby %lobby% has been disabled! &7Players will be kicked!'
+  Success: '%prefix%&aSuccessfully created a lobby with the name &r%name% &aon the &e%game% &agame!'
+
+Placeholders:
+  True: '&aTrue'
+  False: '&cFalse'
+  
+Usage:
+  Header:
+  - '&7&o-------&r &6RonanGames &8| &7Usage &o--------'
+  Footer:
+  - '&7&o------------------'
+  Arena:
+    Create: '&cUsage: &7/%command% create <game> <arenaName>'
+    Enable: '&cUsage: &7/%command% enable <game> <arenaName>'
+    Disable: '&cUsage: &7/%command% disable <game> <arenaName>'
+    Set: '&cUsage: &7/%command% set <type> <game> <arena> <arg> &7Use "&f/%command% set help&7" for help!'
+  Games:
+    Help: '&cUsage: &7/%command% %game% help'
+    Author: '&cUsage: &7/%command% %game% author'
+    Version: '&cUsage: &7/%command% %game% version'
+    Other: '&cUsage: &7/%command% %game% %arg%'
+
+Help-Core:
+  Header:
+  - '&7&o-------&r &6RonanGames &8| &7Help &o--------'
+  Footer:
+  - '&7&o------------------'
+  Core:
+    Help: ' &7- &6/%command% help &f- &7Shows this help list'
+    List: ' &7- &6/%command% list &f- &7Lists all enabled games'
+    Expansion: ' &7- &6/%command% %game% help &f- &7Shows %game%''s help list'
+  Arena:
+    Create: ' &7- &6/%command% create <game>* <arena-name> &f- &7Create a new arena'
+    Disable: ' &7- &6/%command% disable <game> <arena> &f- &7Disable an arena'
+    Enable: ' &7- &6/%command% enable <game> <arena> &f- &7Enable a valid arena'
+    Help: ' &7- &6/%command% help &f- &7Shows this help list'
+    Join: ' &7- &6/%command% join <game> <arena> &f- &7Join an arena'
+    List: ' &7- &6/%command% list &f- &7Lists all games and their arenas'
+    Save: ' &7- &6/%command% save <game> <arena> &f- &7Save an arena'
+    Set: ' &7- &6/%command% set <type> <game> <arena> <arg> &f- &7Set arena configurations'
+    Wand:  ' &7- &6/%command% wand &f- &7Get a wand for selecting the corners of an arena'
+  Reload: ' &7- &6/%command% reload &f- &7Reload all games and arenas'
+  Set:
+    Help: ' &7- &6/%command% set help &f- &7Shows this help list'
+    Protection: ' &7- &6/%command% set protection <game>* <arena>* &f- &7Set the Protection area of an Arena'
+    Gamemode: ' &7- &6/%command% set gamemode <game>* <arena>* <mode>* &f- &7Set the Gamemode of an Arena'
+    Teams: ' &7- &6/%command% set teams <game>* <arena>* <amount> &f- &7Set the amount of teams in an Arena'
+
+Help-Expansion:
+  Header: '&7&o-------&r &6RonanGames &8| &6%game% &8| &7Help &o--------'
+  Core: '&7 - &6/%command% %game% %argument%'
+  Footer:  '&7&o------------------'
+  Help:
+  Version: ' &7- &6/%command% %game% version &f- &7Shows game version'
+  Author: ' &7- &6/%command% %game% author &f- &7Shows game author'
+  

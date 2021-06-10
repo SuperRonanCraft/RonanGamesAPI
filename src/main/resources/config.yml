@@ -1,0 +1,15 @@
+Settings:
+  Language-File: 'en.yml'
+  DebugMessages: false # View information such as if an arena was able to load, if a game loaded, etc
+  Wand: 'legacy_golden_axe'
+ 
+Boards:
+  Format:
+  - '&d[Join-%lobby%]'
+  - '%status%'
+  - '&l%current%/%max%'
+  - ''
+  Status:
+    Active: '&aActive'
+    Waiting: '&2Waiting...'
+    Disabled: '&cDisabled'
