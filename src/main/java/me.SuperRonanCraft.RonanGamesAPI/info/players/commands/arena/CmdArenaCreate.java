@@ -2,9 +2,11 @@ package me.SuperRonanCraft.RonanGamesAPI.info.players.commands.arena;
 
 import me.SuperRonanCraft.RonanGamesAPI.RonanGamesCore;
 import me.SuperRonanCraft.RonanGamesAPI.expansion.Expansion;
+import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.Arena;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypePlugin;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTabComplete;
 import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.Message;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesArena;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -25,12 +27,13 @@ public class CmdArenaCreate implements RonanGamesCmdTypePlugin, RonanGamesCmdTab
                     }
                 Expansion exp = RonanGamesCore.getRegisteredGames().get(expName);
                 if (exp != null) {
-                    if (exp.getArena().createArena(args[2]))
-                        pl.getText().getLang().getArena().getCreateSuccess(sendi, exp.getNameCustom(), args[2], label);
+                    Arena arena = exp.getArena().createArena(args[2]);
+                    if (arena != null)
+                        MessagesArena.CREATE_SUCCESS.send(sendi, arena);
                     else
-                        pl.getText().getLang().getArena().getCreateAlready(sendi, args[2]);
+                        MessagesArena.CREATE_ALREADY.send(sendi, exp.getArena().getArena(args[2]));
                 } else
-                    pl.getText().getLang().getArena().getExistGame(sendi, args[1]);
+                    MessagesArena.EXIST_GAME.send(sendi);
             } else
                 usage(sendi, label);
     }

@@ -38,12 +38,12 @@ public class LoadArenas {
         return arenas.get(arena);
     }
 
-    public boolean createArena(String arenaName) {
+    public Arena createArena(String arenaName) {
         for (String key : arenas.keySet())
             if (key.equalsIgnoreCase(arenaName))
-                return false;
+                return null;
         arenas.put(arenaName, new Arena(pl, arenaName + ".yml"));
-        return true;
+        return arenas.get(arenaName);
     }
 }
 

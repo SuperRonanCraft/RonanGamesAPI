@@ -1,6 +1,7 @@
 package me.SuperRonanCraft.RonanGamesAPI.references.messages.lang;
 
 import me.SuperRonanCraft.RonanGamesAPI.RonanGamesCorePlugin;
+import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.Arena;
 import me.SuperRonanCraft.RonanGamesAPI.references.files.FileLang;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -63,6 +64,8 @@ public class Message {
             //Placeholders based off info
             if (info instanceof String && str.contains("%command%"))
                 str = str.replace("%command%", (String) info);
+            if (info instanceof Arena)
+                str = arena(str, (Arena) info);
             //if (info instanceof AmethystGearInfo)
             //    str = gear(p, str, (AmethystGearInfo) info);
             /*if (info instanceof PersistentDataContainer)
@@ -75,6 +78,12 @@ public class Message {
         if (str != null)
             return color(str);
         return null;
+    }
+
+    private static String arena(String str, Arena arena) {
+        if (str.contains("%arena%"))
+            str = str.replace("%arena%", arena.getName());
+        return str;
     }
 
     public static String color(String str) {

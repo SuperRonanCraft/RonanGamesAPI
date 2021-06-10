@@ -30,8 +30,8 @@ public class LangArena extends Language {
 
     //Create
     public void getCreateSuccess(CommandSender sendi, String game, String arena, String label) {
-        sms(sendi, getLang().getString(pre + "Create.Success").replaceAll("%game%", game).replaceAll("%arena%",
-                arena).replaceAll("%command%", label));
+        sms(sendi, getLang().getString(pre + "Create.Success").replaceAll("%game%", game)
+                .replaceAll("%arena%", arena).replaceAll("%command%", label));
     }
 
     public void getCreateAlready(CommandSender sendi, String arena) {
