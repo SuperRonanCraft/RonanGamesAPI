@@ -2,7 +2,9 @@ package me.SuperRonanCraft.RonanGamesAPI.info.players.commands.arena;
 
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypePlugin;
 import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.Message;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesArena;
 import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesCore;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesHelp;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -14,13 +16,16 @@ public class CmdArenaWand implements RonanGamesCmdTypePlugin {
         if (isPlayer(sendi)) {
             Player p = (Player) sendi;
             if (p.getInventory().contains(pl.getWand().getWandItem()))
-                pl.getText().getLang().getArena().getWandAlready(sendi);
+                MessagesArena.WAND_ALREADY.send(sendi);
+                //pl.getText().getLang().getArena().getWandAlready(sendi);
             else if (p.getInventory().firstEmpty() != -1) {
                 //Bukkit.getWorld(p.getWorld().getNameCustom()).dropItem(p.getLocation(), pl.getWand().getWandItem());
                 p.getInventory().addItem(pl.getWand().getWandItem());
-                pl.getText().getLang().getArena().getWandSuccess(sendi);
+                MessagesArena.WAND_SUCCESS.send(sendi);
+                //pl.getText().getLang().getArena().getWandSuccess(sendi);
             } else
-                pl.getText().getLang().getArena().getWandFull(sendi);
+                MessagesArena.WAND_FULL.send(sendi);
+                //pl.getText().getLang().getArena().getWandFull(sendi);
         }
         //} else
         //invalid(sendi, label);
@@ -34,8 +39,8 @@ public class CmdArenaWand implements RonanGamesCmdTypePlugin {
     }
 
     @Override
-    public String help() {
-        return pl.getText().getLang().getHelp().getArenaWand();
+    public String help(CommandSender sendi, Object info) {
+        return MessagesHelp.ARENA_WAND.get(sendi, info);
     }
 
     @Override

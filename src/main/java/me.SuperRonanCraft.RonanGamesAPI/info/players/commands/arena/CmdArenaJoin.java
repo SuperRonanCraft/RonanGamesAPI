@@ -1,6 +1,7 @@
 package me.SuperRonanCraft.RonanGamesAPI.info.players.commands.arena;
 
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypePlugin;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesHelp;
 import org.bukkit.command.CommandSender;
 
 public class CmdArenaJoin implements RonanGamesCmdTypePlugin {
@@ -16,8 +17,8 @@ public class CmdArenaJoin implements RonanGamesCmdTypePlugin {
     }
 
     @Override
-    public String help() {
-        return pl.getText().getLang().getHelp().getArenaJoin();
+    public String help(CommandSender sendi, Object info) {
+        return MessagesHelp.ARENA_JOIN.get(sendi, info);
     }
 
     @Override

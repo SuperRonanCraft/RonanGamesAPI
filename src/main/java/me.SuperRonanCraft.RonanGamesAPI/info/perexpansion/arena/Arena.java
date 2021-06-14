@@ -13,7 +13,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class Arena {
-    private Expansion pl;
+    private final Expansion pl;
     private Boolean enabled = false;
     private World world;
     // HashMap<String, List<Location>> teamSpawns = new HashMap<String,
@@ -61,14 +61,14 @@ public class Arena {
         this.pos2 = pos2;
     }
 
-    public boolean setGamemode(String gm) {
+    public RonanGamesGamemode setGamemode(String gm) {
         try {
             this.mode = RonanGamesGamemode.valueOf(gm);
-            return true;
+            return this.mode;
         } catch (IllegalArgumentException e) {
             //Errored
         }
-        return false;
+        return null;
     }
 
     public void addTeam(String name, ChatColor color) {
@@ -149,5 +149,15 @@ public class Arena {
             arenaFile = new File(pl.getAPI().getDataFolder().getPath() + File.separator + "games" + File.separator
                     + pl.getName() + File.separator + "arenas", path);
         arenaConfig = YamlConfiguration.loadConfiguration(arenaFile);
+    }
+
+    //Delete File
+    public void deleteArenaFile() {
+        if (arenaFile != null)
+            arenaFile.delete();
+    }
+
+    public Expansion getExpansion() {
+        return pl;
     }
 }

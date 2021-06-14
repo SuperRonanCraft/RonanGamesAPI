@@ -20,8 +20,10 @@ public class RonanGamesCore {
      * @return if the game is able to be registered
      **/
     public static boolean registerGame(Expansion exp) {
-        if (exp.getNameCustom() == null || games.containsKey(exp.getNameCustom()))
+        if (exp.getNameCustom() == null || games.containsKey(exp.getNameCustom())) {
+            RonanGamesCorePlugin.getInstance().getLogger().warning("Unable to register game " + exp.getName());
             return false;
+        }
         if (exp instanceof ExpCommandable)
             cmds.put(exp, new CommandGamesExpansion(exp));
         games.put(exp.getNameCustom(), exp);

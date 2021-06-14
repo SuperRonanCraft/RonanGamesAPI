@@ -5,6 +5,8 @@ import me.SuperRonanCraft.RonanGamesAPI.expansion.Expansion;
 import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.Arena;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypePlugin;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTabComplete;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesArena;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesHelp;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
@@ -20,15 +22,20 @@ public class CmdArenaEnable implements RonanGamesCmdTypePlugin, RonanGamesCmdTab
                 Arena arena = exp.getArena().getArena(args[2]);
                 if (arena != null) {
                     if (arena.isEnabled())
-                        pl.getText().getLang().getArena().getEnableAlready(sendi, arena.getName(), exp.getNameCustom());
+                        MessagesArena.ENABLE_ALREADY.send(sendi, arena);
+                        //pl.getText().getLang().getArena().getEnableAlready(sendi, arena.getName(), exp.getNameCustom());
                     else if (arena.enable())
-                        pl.getText().getLang().getArena().getEnableSuccess(sendi, arena.getName(), exp.getNameCustom());
+                        MessagesArena.ENABLE_SUCCESS.send(sendi, arena);
+                        //pl.getText().getLang().getArena().getEnableSuccess(sendi, arena.getName(), exp.getNameCustom());
                     else
-                        pl.getText().getLang().getArena().getEnableInvalid(sendi, arena.getName(), exp.getNameCustom());
+                        MessagesArena.ENABLE_INVALID.send(sendi, arena);
+                        //pl.getText().getLang().getArena().getEnableInvalid(sendi, arena.getName(), exp.getNameCustom());
                 } else
-                    pl.getText().getLang().getArena().getExistArena(sendi, args[1], exp.getNameCustom());
+                    MessagesArena.EXIST_ARENA.send(sendi, exp);
+                    //pl.getText().getLang().getArena().getExistArena(sendi, args[1], exp.getNameCustom());
             } else
-                pl.getText().getLang().getArena().getExistGame(sendi, args[1]);
+                MessagesArena.EXIST_GAME.send(sendi);
+                //pl.getText().getLang().getArena().getExistGame(sendi, args[1]);
         } else
             usage(sendi, label);
     }
@@ -51,8 +58,8 @@ public class CmdArenaEnable implements RonanGamesCmdTypePlugin, RonanGamesCmdTab
     }
 
     @Override
-    public String help() {
-        return pl.getText().getLang().getHelp().getArenaEnable();
+    public String help(CommandSender sendi, Object info) {
+        return MessagesHelp.ARENA_ENABLE.get(sendi, info);
     }
 
     @Override

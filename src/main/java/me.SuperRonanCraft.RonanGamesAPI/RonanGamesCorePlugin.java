@@ -11,10 +11,8 @@ import me.SuperRonanCraft.RonanGamesAPI.references.Permissions;
 import me.SuperRonanCraft.RonanGamesAPI.references.Points;
 import me.SuperRonanCraft.RonanGamesAPI.references.files.FileBasics;
 import me.SuperRonanCraft.RonanGamesAPI.references.files.FileManager;
-import me.SuperRonanCraft.RonanGamesAPI.references.messages.MessageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.AuthorNagException;
@@ -24,20 +22,19 @@ import java.util.List;
 
 public class RonanGamesCorePlugin extends JavaPlugin {
 
-    private Points points = new Points(this);
-    private MessageManager text = new MessageManager();
-    private Permissions perms = new Permissions();
+    private final Points points = new Points(this);
+    private final Permissions perms = new Permissions();
     private static RonanGamesCorePlugin instance;
     private WandSelector localSelector;
     private Board signBoard;
-    private PlayerInfo pInfo = new PlayerInfo();
+    private final PlayerInfo pInfo = new PlayerInfo();
     //private CMDArenas arenasCmd = new CMDArenas(this);
     //private CMDGames gamesCmd = new CMDGames(this);
     private boolean debug;
-    private FileManager yamlFiles = new FileManager();
+    private final FileManager yamlFiles = new FileManager();
     //COMMANDS
-    private CommandGames games = new CommandGames();
-    private CommandArena arena = new CommandArena();
+    private final CommandGames games = new CommandGames();
+    private final CommandArena arena = new CommandArena();
 
     @Override
     public void onEnable() {
@@ -132,10 +129,6 @@ public class RonanGamesCorePlugin extends JavaPlugin {
 
     public static RonanGamesCorePlugin getInstance() {
         return instance;
-    }
-
-    public MessageManager getText() {
-        return text;
     }
 
     public FileManager getYaml() {

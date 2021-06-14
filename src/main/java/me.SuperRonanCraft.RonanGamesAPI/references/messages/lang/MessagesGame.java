@@ -1,20 +1,18 @@
 package me.SuperRonanCraft.RonanGamesAPI.references.messages.lang;
 
-public enum MessagesCore implements MessagesMain {
-    RELOAD("Reload"),
-    NOPERMISSION("NoPermission"),
-    INVALID("Invalid"),
+public enum MessagesGame implements MessagesMain {
+    GAME_VERSION("Version"),
     ;
 
     String section;
 
-    MessagesCore(String section) {
+    MessagesGame(String section) {
         this.section = section;
     }
 
     @Override
     public String getPrefix() {
-        return "Messages.";
+        return "Game.";
     }
 
     @Override

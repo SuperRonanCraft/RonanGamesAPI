@@ -5,6 +5,9 @@ import me.SuperRonanCraft.RonanGamesAPI.expansion.Expansion;
 import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.Arena;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypePlugin;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTabComplete;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesArena;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesHelp;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesUsage;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
@@ -20,15 +23,19 @@ public class CmdArenaDisable implements RonanGamesCmdTypePlugin, RonanGamesCmdTa
                 Arena arena = exp.getArena().getArena(args[2]);
                 if (arena != null) {
                     if (!arena.isEnabled())
-                        pl.getText().getLang().getArena().getDisableAlready(sendi, arena.getName(), exp.getNameCustom());
+                        MessagesArena.DISABLE_ALREADY.send(sendi, arena);
+                        //pl.getText().getLang().getArena().getDisableAlready(sendi, arena.getName(), exp.getNameCustom());
                     else {
                         arena.disable();
-                        pl.getText().getLang().getArena().getDisableSuccess(sendi, arena.getName(), exp.getNameCustom());
+                        MessagesArena.DISABLE_SUCCESS.send(sendi, arena);
+                        //pl.getText().getLang().getArena().getDisableSuccess(sendi, arena.getName(), exp.getNameCustom());
                     }
                 } else
-                    pl.getText().getLang().getArena().getExistArena(sendi, args[2], exp.getNameCustom());
+                    MessagesArena.EXIST_ARENA.send(sendi, exp);
+                    //pl.getText().getLang().getArena().getExistArena(sendi, args[2], exp.getNameCustom());
             } else
-                pl.getText().getLang().getArena().getExistGame(sendi, args[1]);
+                MessagesArena.EXIST_GAME.send(sendi);
+                //pl.getText().getLang().getArena().getExistGame(sendi, args[1]);
         } else
             usage(sendi, label);
     }
@@ -52,13 +59,13 @@ public class CmdArenaDisable implements RonanGamesCmdTypePlugin, RonanGamesCmdTa
     }
 
     @Override
-    public String help() {
-        return pl.getText().getLang().getHelp().getArenaDisable();
+    public String help(CommandSender sendi, Object info) {
+        return MessagesHelp.ARENA_DISABLE.get(sendi, info);
     }
 
     @Override
     public void usage(CommandSender sendi, String label) {
-        pl.getText().getLang().getUsage().getArenaDisable(sendi, label);
+        MessagesUsage.ARENA_DISABLE.send(sendi, label);
     }
 
     private List<String> getArenas(Expansion exp) {

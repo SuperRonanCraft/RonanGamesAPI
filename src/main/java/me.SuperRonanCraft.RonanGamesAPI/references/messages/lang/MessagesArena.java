@@ -1,11 +1,6 @@
 package me.SuperRonanCraft.RonanGamesAPI.references.messages.lang;
 
-import org.bukkit.command.CommandSender;
-
-import javax.annotation.Nonnull;
-import java.util.List;
-
-public enum MessagesArena {
+public enum MessagesArena implements MessagesMain {
     LIST_NONE("List.None"),
     LIST_FOUND_HEADER("List.Found.Header"),
     LIST_FOUND_CORE("List.Found.Core"),
@@ -39,21 +34,13 @@ public enum MessagesArena {
         this.section = section;
     }
 
-    private static final String pre = "Arena.";
-
-    public void send(CommandSender sendi) {
-        Message.sms(sendi, Message.getLang().getString(pre + section), null);
+    @Override
+    public String getPrefix() {
+        return "Arena.";
     }
 
-    public void send(CommandSender sendi, Object placeholderInfo) {
-        Message.sms(sendi, Message.getLang().getString(pre + section), placeholderInfo);
-    }
-
-    public String get(@Nonnull CommandSender p, Object placeholderInfo) {
-        return Message.placeholder(p, Message.getLang().getString(pre + section), placeholderInfo);
-    }
-
-    public List<String> getList(@Nonnull CommandSender p, Object placeholderInfo) {
-        return Message.placeholder(p, Message.getLang().getStringList(pre + section), placeholderInfo);
+    @Override
+    public String getSection() {
+        return section;
     }
 }

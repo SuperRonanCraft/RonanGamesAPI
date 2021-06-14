@@ -1,10 +1,9 @@
 package me.SuperRonanCraft.RonanGamesAPI.info.players.commands.expansion;
 
-import me.SuperRonanCraft.RonanGamesAPI.RonanGamesCorePlugin;
 import me.SuperRonanCraft.RonanGamesAPI.expansion.Expansion;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypeExpansion;
-import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.LangHelpCore;
 import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.Message;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesHelp;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
@@ -15,15 +14,11 @@ public class CmdExpansionHelp implements RonanGamesCmdTypeExpansion {
     @Override
     public void execute(CommandSender sendi, String[] args, String label, Expansion exp) {
         List<String> list = new ArrayList<>();
-        list.add(getHelpMsg().getGameHeader());
-        list.add(getHelpMsg().getGameAuthor().replaceAll("%command%", label).replaceAll("%game%", exp.getNameCustom()));
-        list.add(getHelpMsg().getGameVersion().replaceAll("%command%", label).replaceAll("%game%", exp.getNameCustom()));
-        //for (String cmd : cmds)
-        //    list.add(getHelpMsg().getGameCore().replaceAll("%command%", cmd).replaceAll("%game%", label));
-        list.add(getHelpMsg().getGameFooter());
-        list.forEach(str ->
-                list.set(list.indexOf(str), str.replaceAll("%game%", exp.getNameCustom()))
-        );
+        Object[] info = {label, exp};
+        list.add(MessagesHelp.EXPANSION_HEADER.get(sendi, info));
+        list.add(MessagesHelp.EXPANSION_AUTHOR.get(sendi, info));
+        list.add(MessagesHelp.EXPANSION_VERSION.get(sendi, info));
+        list.add(MessagesHelp.EXPANSION_FOOTER.get(sendi, info));
         Message.sms(sendi, list, null);
     }
 
@@ -33,8 +28,8 @@ public class CmdExpansionHelp implements RonanGamesCmdTypeExpansion {
     }
 
     @Override
-    public String help() {
-        return null;
+    public String help(CommandSender sendi, Object info) {
+        return MessagesHelp.EXPANSION_HELP.get(sendi, info);
     }
 
     @Override
@@ -45,9 +40,5 @@ public class CmdExpansionHelp implements RonanGamesCmdTypeExpansion {
     @Override
     public void noPerm(CommandSender sendi) {
 
-    }
-
-    private LangHelpCore getHelpMsg() {
-        return RonanGamesCorePlugin.getInstance().getText().getLang().getHelp();
     }
 }

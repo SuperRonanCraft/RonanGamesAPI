@@ -18,7 +18,7 @@ public class CmdExpansionAuthor implements RonanGamesCmdTypeExpansion {
     }
 
     @Override
-    public String help() {
+    public String help(CommandSender sendi, Object info) {
         return null;
     }
 

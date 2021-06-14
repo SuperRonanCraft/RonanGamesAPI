@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CommandGamesExpansion {
 
-    private Expansion pl;
+    private final Expansion pl;
 
     public CommandGamesExpansion(Expansion pl) {
         this.pl = pl;

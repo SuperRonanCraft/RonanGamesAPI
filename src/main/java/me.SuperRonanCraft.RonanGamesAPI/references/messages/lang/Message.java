@@ -1,13 +1,16 @@
 package me.SuperRonanCraft.RonanGamesAPI.references.messages.lang;
 
 import me.SuperRonanCraft.RonanGamesAPI.RonanGamesCorePlugin;
+import me.SuperRonanCraft.RonanGamesAPI.expansion.Expansion;
 import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.Arena;
+import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.RonanGamesGamemode;
 import me.SuperRonanCraft.RonanGamesAPI.references.files.FileLang;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
 
 public class Message {
@@ -58,22 +61,20 @@ public class Message {
                 }*/
             if (p != null && str.contains("%player_name%"))
                 str = str.replaceAll("%player_name%", p.getName());
-            if (str.contains("%player_uuid%"))
-                if (p instanceof Player)
-                    str = str.replaceAll("%player_uuid%", ((Player) p).getUniqueId().toString());
+            if (p instanceof Player && str.contains("%player_uuid%"))
+                str = str.replaceAll("%player_uuid%", ((Player) p).getUniqueId().toString());
             //Placeholders based off info
             if (info instanceof String && str.contains("%command%"))
                 str = str.replace("%command%", (String) info);
             if (info instanceof Arena)
                 str = arena(str, (Arena) info);
-            //if (info instanceof AmethystGearInfo)
-            //    str = gear(p, str, (AmethystGearInfo) info);
-            /*if (info instanceof PersistentDataContainer)
-                str = data(p, str, (PersistentDataContainer) info);
-            if (info instanceof FriendInfo)
-                str = friends(p, str, (FriendInfo) info);
-            if (info instanceof FriendRequest)
-                str = friends(p, str, (FriendRequest) info);*/
+            if (info instanceof RonanGamesGamemode)
+                str = gamemode(str, (RonanGamesGamemode) info);
+            if (info instanceof Expansion)
+                str = expansion(str, (Expansion) info);
+            if (info instanceof Object[])
+                for (Object i : (Object[]) info)
+                    str = placeholder(p, str, i);
         }
         if (str != null)
             return color(str);
@@ -83,6 +84,22 @@ public class Message {
     private static String arena(String str, Arena arena) {
         if (str.contains("%arena%"))
             str = str.replace("%arena%", arena.getName());
+        return expansion(str, arena.getExpansion());
+    }
+
+    private static String gamemode(String str, RonanGamesGamemode gamemode) {
+        if (str.contains("%gamemode%"))
+            str = str.replace("%gamemode%", gamemode.name());
+        return str;
+    }
+
+    private static String expansion(String str, Expansion exp) {
+        if (str.contains("%game_name%"))
+            str = str.replace("%game_name%", exp.getNameCustom());
+        if (str.contains("%game_version%"))
+            str = str.replace("%game_version%", exp.getVersion());
+        if (str.contains("%game_author%"))
+            str = str.replace("%game_author%", exp.getAuthor());
         return str;
     }
 

@@ -7,6 +7,8 @@ import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfac
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTabComplete;
 import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.Message;
 import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesArena;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesHelp;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesUsage;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -44,13 +46,13 @@ public class CmdArenaCreate implements RonanGamesCmdTypePlugin, RonanGamesCmdTab
     }
 
     @Override
-    public String help() {
-        return pl.getText().getLang().getHelp().getArenaCreate();
+    public String help(CommandSender sendi, Object info) {
+        return MessagesHelp.ARENA_CREATE.get(sendi, info);
     }
 
     @Override
     public void usage(CommandSender sendi, String label) {
-        pl.getText().getLang().getUsage().getArenaCreate(sendi, label);
+        MessagesUsage.ARENA_CREATE.send(sendi, label);
     }
 
     @Override

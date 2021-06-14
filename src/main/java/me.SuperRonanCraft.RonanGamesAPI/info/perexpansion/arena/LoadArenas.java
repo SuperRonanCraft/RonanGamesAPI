@@ -8,14 +8,15 @@ import me.SuperRonanCraft.RonanGamesAPI.expansion.Expansion;
 
 public class LoadArenas {
 
-    private Expansion pl;
-    private HashMap<String, Arena> arenas = new HashMap<>();
+    private final Expansion pl;
+    private final HashMap<String, Arena> arenas = new HashMap<>();
 
     public LoadArenas(Expansion pl) {
         this.pl = pl;
     }
 
     public void load() {
+        arenas.clear();
         String[] fileNames = getAllArenaFiles();
         if (fileNames != null)
             for (String f : fileNames) {
@@ -44,6 +45,12 @@ public class LoadArenas {
                 return null;
         arenas.put(arenaName, new Arena(pl, arenaName + ".yml"));
         return arenas.get(arenaName);
+    }
+
+    public void deleteArena(Arena arena) {
+        arena.disable();
+        arena.deleteArenaFile();
+        arenas.remove(arena.getName());
     }
 }
 

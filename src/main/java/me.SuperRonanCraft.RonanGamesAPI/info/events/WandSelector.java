@@ -2,6 +2,7 @@ package me.SuperRonanCraft.RonanGamesAPI.info.events;
 
 import me.SuperRonanCraft.RonanGamesAPI.RonanGamesCorePlugin;
 import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.Message;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesArena;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -19,8 +20,9 @@ import java.util.*;
 
 public class WandSelector implements Listener {
 
-    private HashMap<Player, Boolean> selection = new HashMap<>();
-    private HashMap<Player, Location> pos1 = new HashMap<>(), pos2 = new HashMap<>();
+    private final HashMap<Player, Boolean> selection = new HashMap<>();
+    private final HashMap<Player, Location> pos1 = new HashMap<>();
+    private final HashMap<Player, Location> pos2 = new HashMap<>();
     private ItemStack item;
 
     public WandSelector(RonanGamesCorePlugin pl) {
@@ -37,9 +39,9 @@ public class WandSelector implements Listener {
         Material mat = Material.getMaterial(RonanGamesCorePlugin.getInstance().getConfig().getString("Settings.Wand")
                 .toUpperCase());
         if (mat == null)
-            mat = Material.getMaterial("LEGACY_GOLD_AXE");
-        if (mat == null)
             mat = Material.getMaterial("GOLDEN_AXE");
+        if (mat == null)
+            mat = Material.getMaterial("LEGACY_GOLD_AXE");
         ItemStack item = new ItemStack(mat);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(Message.color("&6&oWand Selector"));
@@ -66,12 +68,12 @@ public class WandSelector implements Listener {
                 Location loc = e.getClickedBlock().getLocation();
                 if (e.getAction().equals(Action.LEFT_CLICK_BLOCK) && (pos1.get(p) == null || !pos1.get(p).equals(loc)
                 )) {
-                    Message.sms(p, "%prefix%&aPosition 1 Selected! &fx = " + loc
+                    Message.sms(p, "&aPosition 1 Selected! &fx = " + loc
                             .getBlockX() + ", y = " + loc.getBlockY() + ", z = " + loc.getBlockZ(), null);
                     pos1.put(p, e.getClickedBlock().getLocation());
                 } else if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && (pos2.get(p) == null || !pos2.get(p)
                         .equals(loc))) {
-                    Message.sms(p, "%prefix%&aPosition 2 Selected! &fx = " + loc
+                    Message.sms(p, "&aPosition 2 Selected! &fx = " + loc
                             .getBlockX() + ", y = " + loc.getBlockY() + ", z = " + loc.getBlockZ(), null);
                     pos2.put(p, e.getClickedBlock().getLocation());
                 }
@@ -91,7 +93,8 @@ public class WandSelector implements Listener {
         if (loc.get(0).getWorld().equals(loc.get(1).getWorld()))
             return loc;
         else
-            RonanGamesCorePlugin.getInstance().getText().getLang().getArena().getSetProtectionWorld(p, label);
+            MessagesArena.SET_PROTECTION_WORLD.send(p);
+            //RonanGamesCorePlugin.getInstance().getText().getLang().getArena().getSetProtectionWorld(p, label);
         return new ArrayList<>();
     }
 

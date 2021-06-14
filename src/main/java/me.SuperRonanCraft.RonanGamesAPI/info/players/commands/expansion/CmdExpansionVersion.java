@@ -1,17 +1,16 @@
 package me.SuperRonanCraft.RonanGamesAPI.info.players.commands.expansion;
 
-import me.SuperRonanCraft.RonanGamesAPI.RonanGamesCorePlugin;
 import me.SuperRonanCraft.RonanGamesAPI.expansion.Expansion;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypeExpansion;
-import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.Message;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesGame;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesHelp;
 import org.bukkit.command.CommandSender;
 
 public class CmdExpansionVersion implements RonanGamesCmdTypeExpansion {
 
     @Override
     public void execute(CommandSender sendi, String[] args, String label, Expansion exp) {
-        Message.sms(sendi, RonanGamesCorePlugin.getInstance().getText().getLang().getGame().getVersion()
-                .replaceAll("%game%", exp.getNameCustom()).replaceAll("%version%", exp.getVersion()).replaceAll("%command%", label), null);
+        MessagesGame.GAME_VERSION.send(sendi, exp);
     }
 
     @Override
@@ -20,8 +19,8 @@ public class CmdExpansionVersion implements RonanGamesCmdTypeExpansion {
     }
 
     @Override
-    public String help() {
-        return null;
+    public String help(CommandSender sendi, Object info) {
+        return MessagesHelp.EXPANSION_VERSION.get(sendi, info);
     }
 
     @Override

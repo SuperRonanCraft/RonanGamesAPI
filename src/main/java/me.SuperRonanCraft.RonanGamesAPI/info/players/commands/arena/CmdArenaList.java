@@ -5,6 +5,7 @@ import me.SuperRonanCraft.RonanGamesAPI.expansion.Expansion;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypePlugin;
 import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.Message;
 import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesArena;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesHelp;
 import org.bukkit.command.CommandSender;
 
 import java.util.*;
@@ -29,12 +30,12 @@ public class CmdArenaList implements RonanGamesCmdTypePlugin {
     }
 
     private void getListFound(CommandSender sendi, HashMap<Expansion, Set<String>> arenas) {
-       List<String> str = MessagesArena.LIST_FOUND_HEADER.getList(sendi, null);
+        List<String> str = new ArrayList<>();
+        str.add(MessagesArena.LIST_FOUND_HEADER.get(sendi, null));
         for (Expansion exp : arenas.keySet())
-            str.add(MessagesArena.LIST_FOUND_CORE.get(sendi, null)
-                    .replaceAll("%game%", exp.getNameCustom())
+            str.add(MessagesArena.LIST_FOUND_CORE.get(sendi, exp)
                     .replaceAll("%arenas%", arenas.get(exp).toString()));
-        str.addAll(MessagesArena.LIST_FOUND_FOOTER.getList(sendi, null));
+        str.add(MessagesArena.LIST_FOUND_FOOTER.get(sendi, null));
         Message.sms(sendi, str, null);
     }
 
@@ -44,8 +45,8 @@ public class CmdArenaList implements RonanGamesCmdTypePlugin {
     }
 
     @Override
-    public String help() {
-        return pl.getText().getLang().getHelp().getArenaList();
+    public String help(CommandSender sendi, Object info) {
+        return MessagesHelp.ARENA_LIST.get(sendi, info);
     }
 
     @Override

@@ -30,8 +30,8 @@ public enum RonanGamesCmdGames {
         return cmd.perm(sendi);
     }
 
-    public String help() {
-        return cmd.help();
+    public String help(CommandSender sendi, Object info) {
+        return cmd.help(sendi, info);
     }
 
     public void usage(CommandSender sendi, String label) {

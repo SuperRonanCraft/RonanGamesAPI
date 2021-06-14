@@ -18,13 +18,12 @@ import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.Arena;
 import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.LoadArenas;
 import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.lobby.LoadLobby;
 import me.SuperRonanCraft.RonanGamesAPI.references.Permissions;
-import me.SuperRonanCraft.RonanGamesAPI.references.messages.MessageManager;
 
 public abstract class Expansion {
     private File configFile = null;
     private FileConfiguration config = null;
-    private LoadArenas arenas = new LoadArenas(this);
-    private LoadLobby lobbys = new LoadLobby(this);
+    private final LoadArenas arenas = new LoadArenas(this);
+    private final LoadLobby lobbys = new LoadLobby(this);
 
     public Expansion() {
         if (register())
@@ -114,10 +113,6 @@ public abstract class Expansion {
      */
     public RonanGamesCorePlugin getAPI() {
         return RonanGamesCorePlugin.getInstance();
-    }
-
-    public MessageManager getMessages() {
-        return getAPI().getText();
     }
 
     public Permissions getAPIPermissions() {

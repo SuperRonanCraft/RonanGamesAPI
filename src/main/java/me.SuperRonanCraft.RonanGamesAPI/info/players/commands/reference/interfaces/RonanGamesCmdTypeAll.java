@@ -10,7 +10,7 @@ public interface RonanGamesCmdTypeAll {
 
     boolean perm(CommandSender sendi);
 
-    String help();
+    String help(CommandSender sendi, Object info);
 
     void usage(CommandSender sendi, String label);
 

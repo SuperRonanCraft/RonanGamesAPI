@@ -14,8 +14,8 @@ public interface RonanGamesCmdAll {
         return getCmd().perm(sendi);
     }
 
-    default String help() {
-        return getCmd().help();
+    default String help(CommandSender sendi, Object info) {
+        return getCmd().help(sendi, info);
     }
 
     default void usage(CommandSender sendi, String label) {

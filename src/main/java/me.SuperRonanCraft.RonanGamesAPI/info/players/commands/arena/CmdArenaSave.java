@@ -5,6 +5,8 @@ import me.SuperRonanCraft.RonanGamesAPI.expansion.Expansion;
 import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.Arena;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypePlugin;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTabComplete;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesArena;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesHelp;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
@@ -21,13 +23,17 @@ public class CmdArenaSave implements RonanGamesCmdTypePlugin, RonanGamesCmdTabCo
                 if (arena != null) {
                     if (arena.isValid()) {
                         arena.saveChanges();
-                        pl.getText().getLang().getArena().getSaveSuccess(sendi, arena.getName(), exp.getNameCustom());
+                        MessagesArena.SAVE_SUCCESS.send(sendi, arena);
+                        //pl.getText().getLang().getArena().getSaveSuccess(sendi, arena.getName(), exp.getNameCustom());
                     } else
-                        pl.getText().getLang().getArena().getSaveInvalid(sendi, arena.getName(), exp.getNameCustom());
+                        MessagesArena.SAVE_INVALID.send(sendi, arena);
+                        //pl.getText().getLang().getArena().getSaveInvalid(sendi, arena.getName(), exp.getNameCustom());
                 } else
-                    pl.getText().getLang().getArena().getExistArena(sendi, args[1], exp.getNameCustom());
+                    MessagesArena.EXIST_ARENA.send(sendi, exp);
+                    //pl.getText().getLang().getArena().getExistArena(sendi, args[1], exp.getNameCustom());
             } else
-                pl.getText().getLang().getArena().getExistGame(sendi, args[1]);
+                MessagesArena.EXIST_GAME.send(sendi);
+                //pl.getText().getLang().getArena().getExistGame(sendi, args[1]);
         } else
             usage(sendi, label);
     }
@@ -50,8 +56,8 @@ public class CmdArenaSave implements RonanGamesCmdTypePlugin, RonanGamesCmdTabCo
     }
 
     @Override
-    public String help() {
-        return pl.getText().getLang().getHelp().getArenaEnable();
+    public String help(CommandSender sendi, Object info) {
+        return MessagesHelp.ARENA_SAVE.get(sendi, info);
     }
 
     @Override

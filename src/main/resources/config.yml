@@ -1,7 +1,7 @@
 Settings:
   Language-File: 'en.yml'
   DebugMessages: false # View information such as if an arena was able to load, if a game loaded, etc
-  Wand: 'legacy_golden_axe'
+  Wand: 'golden_axe'
  
 Boards:
   Format:

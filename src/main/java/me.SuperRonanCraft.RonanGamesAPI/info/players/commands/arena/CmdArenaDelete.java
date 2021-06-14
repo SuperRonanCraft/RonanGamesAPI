@@ -6,6 +6,8 @@ import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.Arena;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdLoadable;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTabComplete;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypePlugin;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesArena;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesHelp;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
@@ -24,16 +26,22 @@ public class CmdArenaDelete implements RonanGamesCmdTypePlugin, RonanGamesCmdTab
     @Override
     public void execute(CommandSender sendi, String[] args, String label) {
         if (args.length == 3) {
-            Expansion exp = RonanGamesCore.getRegisteredGames().get(args[1]);
+            String expName = args[1];
+            for (Expansion exp : RonanGamesCore.getRegisteredGames().values())
+                if (exp.getNameCustom().equalsIgnoreCase(args[1])) {
+                    expName = exp.getNameCustom();
+                    break;
+                }
+            Expansion exp = RonanGamesCore.getRegisteredGames().get(expName);
             if (exp != null) {
                 Arena arena = exp.getArena().getArena(args[2]);
                 if (arena != null) {
-                    if (confirmDelay.get(sendi) == null)
-                        pl.getText().getLang().getArena().getSaveInvalid(sendi, arena.getName(), exp.getNameCustom());
+                    MessagesArena.DELETE_SUCCESS.send(sendi, arena);
+                    exp.getArena().deleteArena(arena);
                 } else
-                    pl.getText().getLang().getArena().getExistArena(sendi, args[1], exp.getNameCustom());
+                    MessagesArena.EXIST_ARENA.send(sendi, new Arena(exp, args[2]));
             } else
-                pl.getText().getLang().getArena().getExistGame(sendi, args[1]);
+                MessagesArena.EXIST_GAME.send(sendi);
         } else
             usage(sendi, label);
     }
@@ -56,8 +64,8 @@ public class CmdArenaDelete implements RonanGamesCmdTypePlugin, RonanGamesCmdTab
     }
 
     @Override
-    public String help() {
-        return pl.getText().getLang().getHelp().getArenaEnable();
+    public String help(CommandSender sendi, Object info) {
+        return MessagesHelp.ARENA_DELETE.get(sendi, info);
     }
 
     @Override

@@ -1,9 +1,7 @@
 package me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.enums;
 
 import me.SuperRonanCraft.RonanGamesAPI.expansion.Expansion;
-import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.expansion.CmdExpansionAuthor;
-import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.expansion.CmdExpansionHelp;
-import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.expansion.CmdExpansionVersion;
+import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.expansion.*;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypeAll;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypeExpansion;
 import org.bukkit.command.CommandSender;

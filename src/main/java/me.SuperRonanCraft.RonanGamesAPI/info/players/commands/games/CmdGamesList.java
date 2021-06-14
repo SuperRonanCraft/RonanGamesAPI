@@ -1,6 +1,7 @@
 package me.SuperRonanCraft.RonanGamesAPI.info.players.commands.games;
 
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypePlugin;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.MessagesHelp;
 import org.bukkit.command.CommandSender;
 
 public class CmdGamesList implements RonanGamesCmdTypePlugin {
@@ -16,8 +17,8 @@ public class CmdGamesList implements RonanGamesCmdTypePlugin {
     }
 
     @Override
-    public String help() {
-        return pl.getText().getLang().getHelp().getCoreList();
+    public String help(CommandSender sendi, Object info) {
+        return MessagesHelp.CORE_LIST.get(sendi, info);
     }
 
     @Override

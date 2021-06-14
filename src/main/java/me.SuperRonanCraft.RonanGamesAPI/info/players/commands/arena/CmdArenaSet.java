@@ -6,8 +6,7 @@ import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.Arena;
 import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.RonanGamesGamemode;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTypePlugin;
 import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.reference.interfaces.RonanGamesCmdTabComplete;
-import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.LangHelpCore;
-import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.Message;
+import me.SuperRonanCraft.RonanGamesAPI.references.messages.lang.*;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -17,7 +16,7 @@ import java.util.List;
 
 public class CmdArenaSet implements RonanGamesCmdTypePlugin, RonanGamesCmdTabComplete {
 
-    private String[] setcmds = {"protection", "gamemode", "teams", "help"};
+    private final String[] setcmds = {"protection", "gamemode", "teams", "help"};
 
     @Override
     public void execute(CommandSender sendi, String[] args, String label) {
@@ -38,25 +37,28 @@ public class CmdArenaSet implements RonanGamesCmdTypePlugin, RonanGamesCmdTabCom
                         if (loc != null) {
                             if (!loc.isEmpty()) {
                                 arena.setProtection(loc.get(0), loc.get(1));
-                                pl.getText().getLang().getArena().getSetProtectionSuccess(sendi);
+                                MessagesArena.SET_PROTECTION_SUCCESS.send(sendi);
                             }
                         } else
-                            pl.getText().getLang().getArena().getSetProtectionError(sendi, label);
+                            MessagesArena.SET_PROTECTION_ERROR.send(sendi);
+                            //pl.getText().getLang().getArena().getSetProtectionError(sendi, label);
                     } else if (args[1].equalsIgnoreCase(setcmds[1]) && args.length == 5) { //Gamemode
-                        if (arena.setGamemode(args[4].toUpperCase()))
-                            pl.getText().getLang().getArena().getSetGamemodeSuccess(sendi,
-                                    RonanGamesGamemode.valueOf(args[4].toUpperCase()).getDesc());
+                        RonanGamesGamemode gamemode = arena.setGamemode(args[4].toUpperCase());
+                        if (gamemode != null)
+                            MessagesArena.SET_GAMEMODE_SUCCESS.send(sendi, gamemode);
                         else
-                            pl.getText().getLang().getArena().getSetGamemodeExist(sendi, args[4].toUpperCase());
+                            MessagesArena.SET_GAMEMODE_EXIST.send(sendi);
                     } else if (args[1].equalsIgnoreCase(setcmds[2]) && args.length == 5) { //Teams
                         //TEAMS TO-DO!
                         return;
                     } else
                         usage(sendi, label);
                 } else
-                    pl.getText().getLang().getArena().getExistArena(sendi, args[3], exp.getNameCustom());
+                    MessagesArena.EXIST_ARENA.send(sendi, exp);
+                    //pl.getText().getLang().getArena().getExistArena(sendi, args[3], exp.getNameCustom());
             } else
-                pl.getText().getLang().getArena().getExistGame(sendi, args[1]);
+                MessagesArena.EXIST_GAME.send(sendi);
+                //pl.getText().getLang().getArena().getExistGame(sendi, args[1]);
         } else
             usage(sendi, label);
     }
@@ -65,16 +67,16 @@ public class CmdArenaSet implements RonanGamesCmdTypePlugin, RonanGamesCmdTabCom
         if (!(sendi instanceof Player))
             sendi.sendMessage(Message.color("&cWARNING&7: &fNot all commands are " +
                     "executable from here!"));
-        LangHelpCore lang = pl.getText().getLang().getHelp();
-        List<String> list = lang.getHeader();
-        list.add(lang.getArenaSetHelp());
-        list.add(lang.getArenaSetGamemode());
-        list.add(lang.getArenaSetProtection());
-        list.add(lang.getArenaSetTeams());
-        list.addAll(lang.getFooter());
+        List<String> list = new ArrayList<>();
+        list.add(MessagesHelp.ARENA_HEADER.get(sendi, label));
+        list.add(MessagesHelp.ARENA_SET_HELP.get(sendi, label));
+        list.add(MessagesHelp.ARENA_SET_GAMEMODE.get(sendi, label));
+        list.add(MessagesHelp.ARENA_SET_PROTECTION.get(sendi, label));
+        list.add(MessagesHelp.ARENA_SET_TEAMS.get(sendi, label));
+        list.add(MessagesHelp.ARENA_FOOTER.get(sendi, label));
         list.forEach(str ->
                 list.set(list.indexOf(str), Message.color(str.replace("%command%", label))));
-        sendi.sendMessage(list.toArray(new String[0]));
+        Message.sms(sendi, list, null);
     }
 
     @Override
@@ -83,13 +85,13 @@ public class CmdArenaSet implements RonanGamesCmdTypePlugin, RonanGamesCmdTabCom
     }
 
     @Override
-    public String help() {
-        return pl.getText().getLang().getHelp().getArenaSet();
+    public String help(CommandSender sendi, Object info) {
+        return MessagesHelp.ARENA_SET_HELP.get(sendi, info);
     }
 
     @Override
     public void usage(CommandSender sendi, String label) {
-        pl.getText().getLang().getUsage().getArenaSet(sendi, label);
+        MessagesUsage.ARENA_SET.send(sendi, label);
     }
 
     @Override
