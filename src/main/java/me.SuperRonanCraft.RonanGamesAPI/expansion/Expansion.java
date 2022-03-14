@@ -7,16 +7,16 @@ import java.util.logging.Level;
 
 import me.SuperRonanCraft.RonanGamesAPI.expansion.interfaces.ExpConfigurable;
 import me.SuperRonanCraft.RonanGamesAPI.expansion.interfaces.ExpRenameable;
-import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.RonanGamesGamemode;
+import me.SuperRonanCraft.RonanGamesAPI.perexpansion.arena.RonanGamesGamemode;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import me.SuperRonanCraft.RonanGamesAPI.RonanGamesCore;
 import me.SuperRonanCraft.RonanGamesAPI.RonanGamesCorePlugin;
-import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.Arena;
-import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.arena.LoadArenas;
-import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.lobby.LoadLobby;
+import me.SuperRonanCraft.RonanGamesAPI.perexpansion.arena.Arena;
+import me.SuperRonanCraft.RonanGamesAPI.perexpansion.arena.LoadArenas;
+import me.SuperRonanCraft.RonanGamesAPI.perexpansion.lobby.LoadLobby;
 import me.SuperRonanCraft.RonanGamesAPI.references.Permissions;
 
 public abstract class Expansion {

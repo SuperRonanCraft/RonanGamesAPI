@@ -52,11 +52,18 @@ public class FileLang {
         return "SOMETHING WENT WRONG";
     }
 
-    @SuppressWarnings("all")
     public List<String> getStringList(String path) {
         if (config.isList(path))
             return config.getStringList(path);
-        return Arrays.asList("SOMETHING WENT WRONG!");
+        return List.of("&7The path &e" + path + " &7was not configured correctly!");
+    }
+
+    public List<String> getList(String path) {
+        List<String> list = new ArrayList<>();
+        if (config.isList(path)) list.addAll(getStringList(path));
+        else if (config.isString(path)) list.add(getString(path));
+        else return List.of("&7The path &e" + path + " &7was not configured correctly!");
+        return list;
     }
 
 

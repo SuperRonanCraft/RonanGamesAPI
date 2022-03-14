@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.CommandGamesExpansion;
+import me.SuperRonanCraft.RonanGamesAPI.events.commands.CommandGamesExpansion;
 import org.bukkit.Bukkit;
 
 import me.SuperRonanCraft.RonanGamesAPI.expansion.interfaces.ExpCommandable;

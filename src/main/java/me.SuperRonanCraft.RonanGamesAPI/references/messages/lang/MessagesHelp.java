@@ -5,8 +5,9 @@ public enum MessagesHelp implements MessagesMain {
     CORE_HEADER("Core.Header"),
     CORE_FOOTER("Core.Footer"),
     CORE_HELP("Core.Help"),
+    CORE_RELOAD("Core.Reload"),
     CORE_LIST("Core.List"),
-    CORE_EXPANSION("Core.Expansion"),
+    //CORE_EXPANSION("Core.Expansion"),
     //ARENA
     ARENA_HEADER("Arena.Header"),
     ARENA_FOOTER("Arena.Footer"),
@@ -28,8 +29,7 @@ public enum MessagesHelp implements MessagesMain {
     EXPANSION_HEADER("Expansion.Header"),
     EXPANSION_FOOTER("Expansion.Footer"),
     EXPANSION_HELP("Expansion.Help"),
-    EXPANSION_VERSION("Expansion.Version"),
-    EXPANSION_AUTHOR("Expansion.Author"),
+    EXPANSION_INFO("Expansion.Info"),
     ;
 
     String section;

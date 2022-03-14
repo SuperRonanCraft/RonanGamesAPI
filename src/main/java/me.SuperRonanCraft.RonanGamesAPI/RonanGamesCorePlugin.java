@@ -1,12 +1,12 @@
 package me.SuperRonanCraft.RonanGamesAPI;
 
 import me.SuperRonanCraft.RonanGamesAPI.expansion.Expansion;
-import me.SuperRonanCraft.RonanGamesAPI.info.events.ArenaProtection;
-import me.SuperRonanCraft.RonanGamesAPI.info.events.WandSelector;
-import me.SuperRonanCraft.RonanGamesAPI.info.perexpansion.Board;
-import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.CommandArena;
-import me.SuperRonanCraft.RonanGamesAPI.info.players.commands.CommandGames;
-import me.SuperRonanCraft.RonanGamesAPI.info.players.PlayerInfo;
+import me.SuperRonanCraft.RonanGamesAPI.events.ArenaProtection;
+import me.SuperRonanCraft.RonanGamesAPI.events.WandSelector;
+import me.SuperRonanCraft.RonanGamesAPI.perexpansion.Board;
+import me.SuperRonanCraft.RonanGamesAPI.events.commands.CommandArena;
+import me.SuperRonanCraft.RonanGamesAPI.events.commands.CommandGames;
+import me.SuperRonanCraft.RonanGamesAPI.players.PlayerInfo;
 import me.SuperRonanCraft.RonanGamesAPI.references.Permissions;
 import me.SuperRonanCraft.RonanGamesAPI.references.Points;
 import me.SuperRonanCraft.RonanGamesAPI.references.files.FileBasics;

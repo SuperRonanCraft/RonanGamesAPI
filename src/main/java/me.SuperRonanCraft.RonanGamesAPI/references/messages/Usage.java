@@ -61,11 +61,11 @@ public class Usage {
     }
 
     private List<String> getHeader() {
-        return getLang().getStringList(pre + "Header");
+        return getLang().getList(pre + "Header");
     }
 
     private List<String> getFooter() {
-        return getLang().getStringList(pre + "Footer");
+        return getLang().getList(pre + "Footer");
     }
 
     FileLang getLang() {

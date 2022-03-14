@@ -7,9 +7,11 @@ Messages:
 Game:
   List:
     None: '&cSorry! &7No games were found!'
-    Found: '&eGames: &f[&6%games%&f]'
-  Version: '&7%game_name% version: &e#%game_version%'
-  Author: '&7%game_name% author: &e%game_author%'
+    Games: '&aGames&7: %game_list%'
+  Info:
+    Prefix: '&7&m-----&6 %game_name% &8| &7Game Info &m-----'
+    Version: '&7Version: &e#%game_version%'
+    Author: '&7Author: &e%game_author%'
 Arena:
   Exist:
     Arena: '&cSorry! The Arena &8%arena%&c does not exist in the &6%game_name%&c mini-game!'
@@ -21,9 +23,9 @@ Arena:
   List:
     None: '&cSorry! &7No arenas were found!'
     Found:
-      Header: '&7&o-------&r &6RonanGames &8| &7Arena List &o--------'
+      Header: '&7&m-------&r &6RonanGames &8| &7Arena List &m--------'
       Core: ' &7- &6%game_name% arenas: &f%arenas%'
-      Footer:  '&7&o------------------'
+      Footer:  '&7&m------------------'
   Create:
     Success: '&aSuccessfully created an arena with the name &r%arena% &aon the &e%game_name% &agame! &7Remember to type "&f/%command% save %arena%&7" to save changes!'
     Already: '&cWhoops! Seems as if the arena &6%arena%&c already exists! Please choose another name!'
@@ -59,8 +61,8 @@ Placeholders:
   False: '&cFalse'
   
 Usage:
-  Header: '&7&o-------&r &6RonanGames &8| &7Usage &o--------'
-  Footer: '&7&o------------------'
+  Header: '&7&m-------&r &6RonanGames &8| &7Usage &m--------'
+  Footer: '&7&m------------------'
   Arena:
     Create: '&cUsage: &7/%command% create <game> <arenaName>'
     Enable: '&cUsage: &7/%command% enable <game> <arenaName>'
@@ -74,14 +76,14 @@ Usage:
 
 Help:
   Core:
-    Header: '&7&o-------&r &6RonanGames &8| &7Help &o--------'
-    Footer: '&7&o------------------'
+    Header: '&7&m-------&r &6RonanGames &8| &7Help &m--------'
+    Footer: '&7&m------------------'
     Help: ' &7- &6/%command% help &f- &7Shows this help list'
     List: ' &7- &6/%command% list &f- &7Lists all enabled games'
     Reload: ' &7- &6/%command% reload &f- &7Reload all games and arenas'
   Arena:
-    Header: '&7&o-------&r &6RonanGames &8| &eArenas &8| &7Help &o--------'
-    Footer: '&7&o------------------'
+    Header: '&7&m-------&r &6RonanGames &8| &eArenas &8| &7Help &m--------'
+    Footer: '&7&m------------------'
     Help: ' &7- &6/%command% help &f- &7Shows this help list'
     Create: ' &7- &6/%command% create <game>* <arena-name> &f- &7Create a new arena'
     Disable: ' &7- &6/%command% disable <game> <arena> &f- &7Disable an arena'
@@ -98,9 +100,8 @@ Help:
       Gamemode: ' &7- &6/%command% set gamemode <game>* <arena>* <mode>* &f- &7Set the Gamemode of an Arena'
       Teams: ' &7- &6/%command% set teams <game>* <arena>* <amount> &f- &7Set the amount of teams in an Arena'
   Expansion:
-    Header: '&7&o-------&r &6RonanGames &8| &e%game_name% &8| &7Help &o--------'
-    Footer:  '&7&o------------------'
+    Header: '&7&m-------&r &6RonanGames &8| &e%game_name% &8| &7Help &m--------'
+    Footer:  '&7&m------------------'
     Help: ' &7- &6/%command% %game_name% help &f- &7Shows %game_name%''s help list'
-    Version: ' &7- &6/%command% %game_name% version &f- &7Shows game version'
-    Author: ' &7- &6/%command% %game_name% author &f- &7Shows game author'
+    Info: ' &7- &6/%command% %game_name% info &f- &7Shows game info'
   
